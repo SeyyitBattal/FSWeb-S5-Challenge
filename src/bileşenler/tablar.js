@@ -1,19 +1,31 @@
 const Tablar = (konu) => {
-  // GÖREV 3
-  // ---------------------
-  // Tek argümanı bir dizi ("konu") olan bu fonksiyonu uygulayın.
-  // Örnek olarak, konu dizisi şu şekilde deklare edilmişse ['javascript', 'bootstrap', 'teknoloji']
-  // fonksiyon aşağıdaki şekilde bir DOM öğesi döndürecek.
-  // Kullanılan etiketler, öğelerin hiyerarşisi ve öznitelikleri sağlanan işaretlemeyle eşleşmelidir!
-  // Öğelerin içindeki metin, "textContent" özelliği kullanılarak ayarlanacaktır ("innerText" DEĞİL).
-  //
-  // <div class="topics">
-  //   <div class="tab">javascript</div>
-  //   <div class="tab">bootstrap</div>
-  //   <div class="tab">teknoloji</div>
-  // </div>
-  //
-}
+  const firstDiv = document.createElement("div");
+  firstDiv.className = "topics";
+
+  konu.forEach((element) => {
+    const secondDiv = document.createElement("div");
+    secondDiv.textContent = element;
+    secondDiv.className = "tab";
+    firstDiv.append(secondDiv);
+  });
+
+  return firstDiv;
+};
+
+// GÖREV 3
+// ---------------------
+// Tek argümanı bir dizi ("konu") olan bu fonksiyonu uygulayın.
+// Örnek olarak, konu dizisi şu şekilde deklare edilmişse ['javascript', 'bootstrap', 'teknoloji']
+// fonksiyon aşağıdaki şekilde bir DOM öğesi döndürecek.
+// Kullanılan etiketler, öğelerin hiyerarşisi ve öznitelikleri sağlanan işaretlemeyle eşleşmelidir!
+// Öğelerin içindeki metin, "textContent" özelliği kullanılarak ayarlanacaktır ("innerText" DEĞİL).
+//
+// <div class="topics">
+//   <div class="tab">javascript</div>
+//   <div class="tab">bootstrap</div>
+//   <div class="tab">teknoloji</div>
+// </div>
+//
 
 const tabEkleyici = (secici) => {
   // GÖREV 4
@@ -23,6 +35,6 @@ const tabEkleyici = (secici) => {
   // Yanıtın içindeki konu dizisini bulun ve Tablar bileşenini kullanarak tabları oluşturun.
   // Tabları, fonksiyona iletilen seçiciyle eşleşen DOM'daki öğeye ekleyin.
   //
-}
+};
 
-export { Tablar, tabEkleyici }
+export { Tablar, tabEkleyici };
