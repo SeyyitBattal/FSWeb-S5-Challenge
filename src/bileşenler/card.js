@@ -1,22 +1,28 @@
 const Card = (makale) => {
-  const liste = [
-    `<div class="card">
-    <div class="headline">${makale.anabaslik}</div>
-    <div class="author">
-      <div class="img-container">
-        <img src=${makale.yazarFoto}>
-      </div>
-      <span>${makale.yazarAdı} tarafından</span>
-    </div>
-  </div>`,
-  ];
+  const mainDiv = document.createElement("div");
+  mainDiv.className = "card";
 
-  const cardCard = document.querySelector(".card");
-  cardCard.addEventListener("click", (event) => {
-    console.log("Makale adı: ", makale.anabaslik);
-    return cardCard;
-  });
-  console.log("liste: ", liste);
+  const headDiv = document.createElement("div");
+  headDiv.className = "headline";
+  headDiv.textContent = makale.anabaslik;
+
+  const authorDiv = document.createElement("div");
+  authorDiv.className = "author";
+
+  const imgDiv = document.createElement("div");
+  imgDiv.className = "img-container";
+
+  const imgsrc = document.createElement("img");
+  imgsrc.setAttribute("src", makale.yazarFoto);
+
+  const spanYazar = document.createElement("span");
+  spanYazar.textContent = `${makale.yazarAdi} tarafından`;
+
+  imgDiv.append(imgsrc);
+  authorDiv.append(imgDiv, spanYazar);
+  mainDiv.append(headDiv, authorDiv);
+
+  return mainDiv;
 };
 
 {
