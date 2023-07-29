@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const Card = (makale) => {
   const mainDiv = document.createElement("div");
   mainDiv.className = "card";
@@ -21,6 +23,11 @@ const Card = (makale) => {
   imgDiv.append(imgsrc);
   authorDiv.append(imgDiv, spanYazar);
   mainDiv.append(headDiv, authorDiv);
+
+  // const imgClick = document.querySelector(".img-container");
+  // imgClick.addEventListener("click", (event) => {
+  //   console.log("You clicked image!", event);
+  // });
 
   return mainDiv;
 };
@@ -46,14 +53,35 @@ const Card = (makale) => {
 }
 
 const cardEkleyici = (secici) => {
-  // GÖREV 6
-  // ---------------------
-  // Tek bağımsız değişkeni olarak bir css seçici alan bu fonksiyonu uygulayın.
-  // Makaleleri bu uç noktadan almalıdır: `http://localhost:5001/api/makaleler` (console.log ile test edin!!).
-  // Bununla birlikte, makaleler tek bir düzenli dizi halinde organize edilmemiştir. Yanıtı yakından inceleyin!
-  // Card bileşenini kullanarak yanıttaki her makale nesnesinden bir kart oluşturun.
-  // Her cardı, fonksiyona iletilen seçiciyle eşleşen DOM'daki öğeye ekleyin.
-  //
+  const cardInHere = document.querySelector(secici);
+
+  async function cardLink() {
+    await axios
+      .get(`http://localhost:5001/api/makaleler`)
+      .then(function (response) {
+        console.log("Cardlar çıktısı: ", response.data.makaleler);
+        const buyukobje = response.data.makaleler;
+
+        const diziHali = Object.values(buyukobje);
+
+        for (let i = 0; i < diziHali.length; i++) {
+          for (let y = 0; y < diziHali[i].length; y++) {
+            const sonHal = Card(diziHali[i][y]);
+            cardInHere.append(sonHal);
+          }
+        }
+      });
+  }
+  cardLink();
 };
+
+// GÖREV 6
+// ---------------------
+// Tek bağımsız değişkeni olarak bir css seçici alan bu fonksiyonu uygulayın.
+// Makaleleri bu uç noktadan almalıdır: `http://localhost:5001/api/makaleler` (console.log ile test edin!!).
+// Bununla birlikte, makaleler tek bir düzenli dizi halinde organize edilmemiştir. Yanıtı yakından inceleyin!
+// Card bileşenini kullanarak yanıttaki her makale nesnesinden bir kart oluşturun.
+// Her cardı, fonksiyona iletilen seçiciyle eşleşen DOM'daki öğeye ekleyin.
+//
 
 export { Card, cardEkleyici };
