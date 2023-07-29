@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const Tablar = (konu) => {
   const firstDiv = document.createElement("div");
   firstDiv.className = "topics";
@@ -28,13 +30,25 @@ const Tablar = (konu) => {
 //
 
 const tabEkleyici = (secici) => {
-  // GÖREV 4
-  // ---------------------
-  // Tek argümanı olarak bir css seçici alan bu işlevi uygulayın.
-  // Konuları bu uç noktadan almalıdır: `http://localhost:5001/api/konular` (console.log ile test edin!).
-  // Yanıtın içindeki konu dizisini bulun ve Tablar bileşenini kullanarak tabları oluşturun.
-  // Tabları, fonksiyona iletilen seçiciyle eşleşen DOM'daki öğeye ekleyin.
-  //
+  const TabInHere = document.querySelector(secici);
+
+  async function konularLink() {
+    await axios
+      .get(`http://localhost:5001/api/konular`)
+      .then(function (response) {
+        console.log("Alınan datalar: ", response.data.konular);
+        const TabTab = Tablar(response.data.konular);
+        TabInHere.append(TabTab);
+      });
+  }
+  konularLink();
 };
 
 export { Tablar, tabEkleyici };
+// GÖREV 4
+// ---------------------
+// Tek argümanı olarak bir css seçici alan bu işlevi uygulayın.
+// Konuları bu uç noktadan almalıdır: `http://localhost:5001/api/konular` (console.log ile test edin!).
+// Yanıtın içindeki konu dizisini bulun ve Tablar bileşenini kullanarak tabları oluşturun.
+// Tabları, fonksiyona iletilen seçiciyle eşleşen DOM'daki öğeye ekleyin.
+//

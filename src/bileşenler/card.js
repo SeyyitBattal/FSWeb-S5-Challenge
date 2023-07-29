@@ -1,5 +1,26 @@
 const Card = (makale) => {
-  // GÖREV 5
+  const liste = [
+    `<div class="card">
+    <div class="headline">${makale.anabaslik}</div>
+    <div class="author">
+      <div class="img-container">
+        <img src=${makale.yazarFoto}>
+      </div>
+      <span>${makale.yazarAdı} tarafından</span>
+    </div>
+  </div>`,
+  ];
+
+  const cardCard = document.querySelector(".card");
+  cardCard.addEventListener("click", (event) => {
+    console.log("Makale adı: ", makale.anabaslik);
+    return cardCard;
+  });
+  console.log("liste: ", liste);
+};
+
+{
+  /* // GÖREV 5
   // ---------------------
   // Aşağıda gördüğünüz işaretlemeyi döndürmesi gereken bu fonksiyonu uygulayın.
   // Tek argümanı olarak "anabaslik", "yazarFoto" ve "yazarAdı" özelliklerine sahip bir "makale" nesnesi alır.
@@ -15,8 +36,7 @@ const Card = (makale) => {
   //     </div>
   //     <span>{ yazarAdı } tarafından</span>
   //   </div>
-  // </div>
-  //
+  // </div> */
 }
 
 const cardEkleyici = (secici) => {
@@ -28,6 +48,6 @@ const cardEkleyici = (secici) => {
   // Card bileşenini kullanarak yanıttaki her makale nesnesinden bir kart oluşturun.
   // Her cardı, fonksiyona iletilen seçiciyle eşleşen DOM'daki öğeye ekleyin.
   //
-}
+};
 
-export { Card, cardEkleyici }
+export { Card, cardEkleyici };
